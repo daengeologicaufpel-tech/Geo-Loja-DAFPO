@@ -1,0 +1,24 @@
+# Configuração do backend: Diz ao CMS para usar o Git Gateway da Netlify
+backend:
+  name: git-gateway
+  branch: main # Importante: se sua branch principal for 'master', troque aqui
+
+# Configuração de Mídia: Onde as imagens enviadas pelo painel serão salvas
+media_folder: "images"   # Salva as imagens na pasta 'images' na raiz
+public_folder: "/images" # Como o site deve referenciar essas imagens
+
+# Coleções: Define os tipos de conteúdo que você pode editar.
+collections:
+  - name: "produtos"               # Nome interno da coleção
+    label: "Produtos"              # Nome que aparece no painel
+    folder: "produtos"             # A pasta na raiz onde os arquivos .md dos produtos são salvos
+    create: true                   # Permite criar novos produtos
+    slug: "{{slug}}"               # Gera o nome do arquivo a partir do título
+    
+    # Campos do formulário: O que você vai preencher para cada produto
+    fields:
+      - { label: "Título do Produto", name: "titulo", widget: "string" }
+      - { label: "Preço (ex: 69,90)", name: "preco", widget: "string" }
+      - { label: "Imagem da Frente", name: "imagem_frente", widget: "image" }
+      - { label: "Imagem das Costas", name: "imagem_costas", widget: "image" }
+      - { label: "Descrição Completa", name: "body", widget: "markdown" }
