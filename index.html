@@ -1,1 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>DAFPO - Loja Geológica</title>
+    <style> /* Seu CSS completo aqui */ </style>
+</head>
+<body>
+    <header> </header>
+    <main>
+        <section class="products-section">
+            <div class="container">
+                <div class="product-grid" id="product-grid-container">
+                    <p>Carregando produtos...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer> </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const productGrid = document.getElementById('product-grid-container');
+            if (productGrid) {
+                const GITHUB_USER = "seu-usuario-github"; // <-- MUDE AQUI
+                const GITHUB_REPO = "seu-repositorio-github"; // <-- MUDE AQUI
+                const apiUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/produtos`;
+
+                async function fetchProducts() {
+                    try {
+                        const response = await fetch(apiUrl);
+                        const files = await response.json();
+                        productGrid.innerHTML = '';
+
+                        const fetchPromises = files.map(file => 
+                            fetch(file.download_url).then(res => res.text()).then(content => ({
+                                content: content,
+                                slug: file.name.replace(/\.md$/, '')
+                            }))
+                        );
+                        
+                        const productsData = await Promise.all(fetchPromises);
+
+                        productsData.forEach(productData => {
+                            const product = parseFrontmatter(productData.content);
+                            if (product) {
+                                displayProduct(product, productData.slug);
+                            }
+                        });
+
+                    } catch (error) {
+                        console.error('Erro:', error);
+                        productGrid.innerHTML = '<p>Não foi possível carregar os produtos.</p>';
+                    }
+                }
+
+                function parseFrontmatter(markdownContent) {
+                    const match = markdownContent.match(/---([\s\S]*?)---/);
+                    if (!match) return null;
+                    const frontmatter = {};
+                    const lines = match[1].trim().split('\n');
+                    lines.forEach(line => {
+                        const [key, ...valueParts] = line.split(':');
+                        if (key) {
+                            const value = valueParts.join(':').trim().replace(/^['"]|['"]$/g, '');
+                            frontmatter[key.trim()] = value;
+                        }
+                    });
+                    return frontmatter;
+                }
+
+                function displayProduct(product, slug) {
+                    const cardLink = document.createElement('a');
+                    // O link agora leva para a página de detalhes com um parâmetro
+                    cardLink.href = `/produto/?slug=${slug}`;
+                    cardLink.className = 'product-card';
+                    cardLink.innerHTML = `
+                        <div class="card-media">
+                            <img class="card-media-main" src="${product.imagem_frente}" alt="${product.titulo}">
+                            <img class="card-media-hover" src="${product.imagem_costas}" alt="${product.titulo} - Costas">
+                        </div>
+                        <div class="card-info">
+                            <h3>${product.titulo}</h3>
+                            <p class="price">R$ ${product.preco}</p>
+                        </div>
+                    `;
+                    productGrid.appendChild(cardLink);
+                }
+
+                fetchProducts();
+            }
+        });
+    </script>
+</body>
+</html>
