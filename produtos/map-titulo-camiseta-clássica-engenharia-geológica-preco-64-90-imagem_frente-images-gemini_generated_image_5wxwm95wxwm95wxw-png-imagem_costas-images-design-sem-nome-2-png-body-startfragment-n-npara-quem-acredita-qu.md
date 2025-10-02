@@ -1,7 +1,7 @@
 ---
 titulo: Camiseta Clássica Engenharia Geológica
 preco: 64,90
-imagem_frente: /images/gemini_generated_image_5wxwm95wxwm95wxw.png
+imagem_frente: /images/gemini_generated_image_4t1xta4t1xta4t1x.png
 imagem_costas: /images/design-sem-nome-2-.png
 ---
 <!--StartFragment-->
