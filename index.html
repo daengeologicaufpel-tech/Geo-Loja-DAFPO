@@ -17,19 +17,39 @@
     </style>
 </head>
 <body>
+
+    <form name="pedido" netlify netlify-honeypot="bot-field" hidden>
+        </form>
     <header class="main-header">
         <div class="container header-container">
             <nav class="header-nav left-nav">
-                <ul><li><a href="#">Camisas</a></li><li><a href="#">Moletons</a></li></ul>
+                <ul>
+                    <li><a href="#">Camisas</a></li>
+                    <li><a href="#">Moletons</a></li>
+                </ul>
             </nav>
-            <div class="logo"><a href="/"><img src="/images/dafpo-logo.png" alt="Logo DAFPO"></a></div>
+            <div class="logo">
+                <a href="/">
+                    <img src="/images/dafpo-logo.png" alt="Logo DAFPO">
+                </a>
+            </div>
             <nav class="header-nav right-nav">
-                <ul><li><a href="#">Acessórios</a></li><li><a href="#">Sobre</a></li></ul>
+                <ul>
+                    <li><a href="#">Acessórios</a></li>
+                    <li><a href="#">Sobre</a></li>
+                </ul>
             </nav>
-            <button class="hamburger-menu" id="hamburger-btn" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+            <button class="hamburger-menu" id="hamburger-btn" aria-label="Abrir menu">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </header>
-    <nav class="mobile-nav-menu" id="mobile-menu"><a href="#">Camisas</a><a href="#">Moletons</a><a href="#">Acessórios</a><a href="#">Sobre</a></nav>
+    <nav class="mobile-nav-menu" id="mobile-menu">
+        <a href="#">Camisas</a>
+        <a href="#">Moletons</a>
+        <a href="#">Acessórios</a>
+        <a href="#">Sobre</a>
+    </nav>
 
     <main>
         <section class="products-section">
@@ -45,105 +65,103 @@
         </footer>
     
     <script>
-        // --- PARTE 1: LÓGICA DO MENU MOBILE ---
-        const hamburgerBtn = document.getElementById('hamburger-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (hamburgerBtn && mobileMenu) {
-            const icon = hamburgerBtn.querySelector('i');
-            hamburgerBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('is-active');
-                if (mobileMenu.classList.contains('is-active')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
-                } else {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
-            });
-        }
-
-        // --- PARTE 2: LÓGICA PARA CARREGAR PRODUTOS DINAMICAMENTE ---
         document.addEventListener('DOMContentLoaded', () => {
-            const productGrid = document.getElementById('product-grid-container');
-            if (!productGrid) {
-                console.error("Erro Crítico: Elemento com ID 'product-grid-container' não foi encontrado no HTML.");
-                return;
-            }
-            
-            const GITHUB_USER = "daengeologicaufpel-tech";
-            const GITHUB_REPO = "Geo-Loja-DAFPO";
-            const apiUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/produtos`;
-
-            async function fetchProducts() {
-                try {
-                    const response = await fetch(apiUrl);
-                    if (!response.ok) throw new Error(`Erro de rede: ${response.status}`);
-                    
-                    const files = await response.json();
-                    if (files.message) throw new Error(`Erro do GitHub: ${files.message}`);
-
-                    productGrid.innerHTML = ''; 
-                    if (files.length === 0) {
-                        productGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1;">Nenhum produto cadastrado.</p>';
-                        return;
-                    }
-
-                    const fetchPromises = files.map(file => 
-                        fetch(file.download_url).then(res => res.text()).then(content => ({
-                            content: content,
-                            slug: file.name.replace(/\.md$/, '')
-                        }))
-                    );
-                    
-                    const productsData = await Promise.all(fetchPromises);
-
-                    productsData.forEach(productData => {
-                        const product = parseFrontmatter(productData.content);
-                        if (product) {
-                            displayProduct(product, productData.slug);
-                        }
-                    });
-
-                } catch (error) {
-                    console.error('Falha ao buscar produtos:', error);
-                    productGrid.innerHTML = `<p style="text-align: center; grid-column: 1 / -1;">Não foi possível carregar os produtos. Verifique se o repositório é público e os nomes estão corretos.</p>`;
-                }
-            }
-
-            function parseFrontmatter(markdownContent) {
-                const match = markdownContent.match(/---([\s\S]*?)---/);
-                if (!match) return null;
-                const frontmatter = {};
-                const lines = match[1].trim().split('\n');
-                lines.forEach(line => {
-                    const separatorIndex = line.indexOf(':');
-                    if (separatorIndex > -1) {
-                        const key = line.slice(0, separatorIndex).trim();
-                        const value = line.slice(separatorIndex + 1).trim().replace(/^['"]|['"]$/g, '');
-                        frontmatter[key] = value;
+            // --- PARTE 1: LÓGICA DO MENU MOBILE (SEU CÓDIGO ORIGINAL) ---
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (hamburgerBtn && mobileMenu) {
+                const icon = hamburgerBtn.querySelector('i');
+                hamburgerBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('is-active');
+                    if (mobileMenu.classList.contains('is-active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
                     }
                 });
-                return frontmatter;
             }
 
-            function displayProduct(product, slug) {
-                const cardLink = document.createElement('a');
-                cardLink.href = `/produto/?slug=${slug}`;
-                cardLink.className = 'product-card';
-                cardLink.innerHTML = `
-                    <div class="card-media">
-                        <img class="card-media-main" src="${product.imagem_frente}" alt="${product.titulo}">
-                        <img class="card-media-hover" src="${product.imagem_costas}" alt="${product.titulo} - Costas">
-                    </div>
-                    <div class="card-info">
-                        <h3>${product.titulo}</h3>
-                        <p class="price">R$ ${product.preco}</p>
-                    </div>
-                `;
-                productGrid.appendChild(cardLink);
-            }
+            // --- PARTE 2: LÓGICA PARA CARREGAR PRODUTOS DINAMICAMENTE ---
+            const productGrid = document.getElementById('product-grid-container');
+            if (productGrid) {
+                // Seus dados do GitHub, já inseridos
+                const GITHUB_USER = "daengeologicaufpel-tech";
+                const GITHUB_REPO = "Geo-Loja-DAFPO";
+                const apiUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/produtos`;
 
-            fetchProducts();
+                async function fetchProducts() {
+                    try {
+                        const response = await fetch(apiUrl);
+                        if (!response.ok) throw new Error(`Erro de rede: ${response.status}`);
+                        
+                        const files = await response.json();
+                        if (files.message) throw new Error(`Erro do GitHub: ${files.message}`);
+
+                        productGrid.innerHTML = ''; 
+                        if (files.length === 0) {
+                            productGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1;">Nenhum produto cadastrado.</p>';
+                            return;
+                        }
+
+                        const fetchPromises = files.map(file => 
+                            fetch(file.download_url).then(res => res.text()).then(content => ({
+                                content: content,
+                                slug: file.name.replace(/\.md$/, '')
+                            }))
+                        );
+                        
+                        const productsData = await Promise.all(fetchPromises);
+
+                        productsData.forEach(productData => {
+                            const product = parseFrontmatter(productData.content);
+                            if (product) {
+                                displayProduct(product, productData.slug);
+                            }
+                        });
+
+                    } catch (error) {
+                        console.error('Falha ao buscar produtos:', error);
+                        productGrid.innerHTML = `<p style="text-align: center; grid-column: 1 / -1;">Não foi possível carregar os produtos. Verifique se o repositório é público.</p>`;
+                    }
+                }
+
+                function parseFrontmatter(markdownContent) {
+                    const match = markdownContent.match(/---([\s\S]*?)---/);
+                    if (!match) return null;
+                    const frontmatter = {};
+                    const lines = match[1].trim().split('\n');
+                    lines.forEach(line => {
+                        const separatorIndex = line.indexOf(':');
+                        if (separatorIndex > -1) {
+                            const key = line.slice(0, separatorIndex).trim();
+                            const value = line.slice(separatorIndex + 1).trim().replace(/^['"]|['"]$/g, '');
+                            frontmatter[key] = value;
+                        }
+                    });
+                    return frontmatter;
+                }
+
+                function displayProduct(product, slug) {
+                    const cardLink = document.createElement('a');
+                    cardLink.href = `/produto/?slug=${slug}`;
+                    cardLink.className = 'product-card';
+                    cardLink.innerHTML = `
+                        <div class="card-media">
+                            <img class="card-media-main" src="${product.imagem_frente}" alt="${product.titulo}">
+                            <img class="card-media-hover" src="${product.imagem_costas}" alt="${product.titulo} - Costas">
+                        </div>
+                        <div class="card-info">
+                            <h3>${product.titulo}</h3>
+                            <p class="price">R$ ${product.preco}</p>
+                        </div>
+                    `;
+                    productGrid.appendChild(cardLink);
+                }
+
+                fetchProducts();
+            }
         });
     </script>
 </body>
