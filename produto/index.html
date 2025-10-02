@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <title>Detalhes do Produto</title>
+    <style> 
+      /* Seu CSS completo aqui */ 
+      /* Adicione estilos para a página de produto se necessário */
+      .product-detail { display: flex; gap: 30px; margin: 40px 0; }
+      .product-detail-image { flex: 1; }
+      .product-detail-info { flex: 1; }
+    </style>
+</head>
+<body>
+    <header> </header>
+    <main id="main-content">
+        <p>Carregando produto...</p>
+    </main>
+    <footer> </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainContent = document.getElementById('main-content');
+            const params = new URLSearchParams(window.location.search);
+            const slug = params.get('slug');
+
+            if (slug) {
+                const GITHUB_USER = "seu-usuario-github"; // <-- MUDE AQUI
+                const GITHUB_REPO = "seu-repositorio-github"; // <-- MUDE AQUI
+                const fileUrl = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/main/produtos/${slug}.md`;
+
+                fetch(fileUrl)
+                    .then(res => res.text())
+                    .then(content => {
+                        const product = parseFrontmatter(content);
+                        const bodyContent = content.split('---').slice(2).join('---').trim();
+                        displayProductDetail(product, bodyContent);
+                    });
+            }
+
+            function parseFrontmatter(markdownContent) { /* ... mesma função do index.html ... */ }
+
+            function displayProductDetail(product, body) {
+                document.title = product.titulo;
+                mainContent.innerHTML = `
+                    <div class="container product-detail">
+                        <div class="product-detail-image">
+                            <img src="${product.imagem_frente}" alt="${product.titulo}" style="max-width: 100%;">
+                        </div>
+                        <div class="product-detail-info">
+                            <h1>${product.titulo}</h1>
+                            <p class="price" style="font-size: 1.5rem; color: var(--marrom-principal);">R$ ${product.preco}</p>
+                            <div class="description">
+                                 <p>${body.replace(/\n/g, '<br>')}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
