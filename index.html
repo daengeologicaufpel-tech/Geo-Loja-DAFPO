@@ -66,14 +66,13 @@
         document.addEventListener('DOMContentLoaded', () => {
             const productGrid = document.getElementById('product-grid-container');
             if (!productGrid) {
-                console.error("Erro Crítico: Elemento com ID 'product-grid-container' não foi encontrado.");
+                console.error("Erro Crítico: Elemento com ID 'product-grid-container' não foi encontrado no HTML.");
                 return;
             }
             
             const GITHUB_USER = "daengeologicaufpel-tech";
             const GITHUB_REPO = "Geo-Loja-DAFPO";
             const apiUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/produtos`;
-            console.log(`Buscando produtos de: ${apiUrl}`);
 
             async function fetchProducts() {
                 try {
@@ -81,9 +80,8 @@
                     if (!response.ok) throw new Error(`Erro de rede: ${response.status}`);
                     
                     const files = await response.json();
-                    if (files.message) throw new Error(`Erro do GitHub: ${files.message}. Verifique o nome do usuário/repositório.`);
+                    if (files.message) throw new Error(`Erro do GitHub: ${files.message}`);
 
-                    console.log('Arquivos encontrados:', files);
                     productGrid.innerHTML = ''; 
                     if (files.length === 0) {
                         productGrid.innerHTML = '<p style="text-align: center; grid-column: 1 / -1;">Nenhum produto cadastrado.</p>';
@@ -102,7 +100,6 @@
                     productsData.forEach(productData => {
                         const product = parseFrontmatter(productData.content);
                         if (product) {
-                            console.log('Criando card para:', product.titulo);
                             displayProduct(product, productData.slug);
                         }
                     });
