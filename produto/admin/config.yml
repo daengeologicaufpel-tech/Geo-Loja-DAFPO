@@ -1,0 +1,19 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images" # Crie uma pasta 'images' na raiz
+public_folder: "/images"
+
+collections:
+  - name: "produtos"
+    label: "Produtos"
+    folder: "produtos" # Pasta na raiz para os arquivos .md
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Título do Produto", name: "titulo", widget: "string" }
+      - { label: "Preço (ex: 69,90)", name: "preco", widget: "string" }
+      - { label: "Imagem da Frente", name: "imagem_frente", widget: "image" }
+      - { label: "Imagem das Costas", name: "imagem_costas", widget: "image" }
+      - { label: "Descrição Completa", name: "body", widget: "markdown" }
