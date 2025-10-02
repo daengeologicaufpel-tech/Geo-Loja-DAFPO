@@ -3,6 +3,7 @@ titulo: Camiseta Geo Dino - Fóssil T-Rex
 preco: "65"
 imagem_frente: /images/gemini_generated_image_hj4861hj4861hj48.png
 imagem_costas: /images/gemini_generated_image_pouh2opouh2opouh.png
+tamanhos: "P, M, G, GG, XG"  #
 ---
 <!--StartFragment-->
 
