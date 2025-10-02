@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós - DAFPO Loja Geológica</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Work+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <style>
+        :root{--verde-principal:#3A5A40;--marrom-principal:#A0522D;--cor-fundo-claro:#F4F1EA;--cor-fundo-escuro:#252525;--cor-texto-claro:#EFEFEF;--cor-texto-escuro:#333333}*{-webkit-box-sizing:border-box;box-sizing:border-box;margin:0;padding:0}body{background-color:var(--cor-fundo-claro);color:var(--cor-texto-escuro);font-family:"Work Sans",sans-serif}.container{margin:0 auto;max-width:1200px;padding:0 20px}.main-header{background-color:var(--cor-fundo-escuro);border-bottom:3px solid var(--verde-principal);padding:15px 0;position:relative}.header-container{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.main-header .logo{height:50px}.main-header .logo img{display:block;height:100%}.header-nav ul{display:-webkit-box;display:-ms-flexbox;display:flex;gap:25px;list-style:none}.header-nav a{color:var(--cor-texto-claro);font-size:1rem;font-weight:700;letter-spacing:1px;padding:5px 0;text-decoration:none;-webkit-text-decoration-skip:objects;text-transform:uppercase;-webkit-transition:color .3s ease;transition:color .3s ease}.header-nav a:hover{color:var(--verde-principal)}.hamburger-menu{background:0 0;border:none;color:#fff;cursor:pointer;display:none;font-size:1.8rem;z-index:1001}.mobile-nav-menu{display:none}.main-footer{background-color:var(--cor-fundo-escuro);color:var(--cor-texto-claro);margin-top:40px;padding:40px 0 20px}.footer-grid{display:grid;gap:30px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-bottom:30px}.footer-column h4{color:#fff;font-size:1.1rem;font-weight:700;letter-spacing:1px;margin-bottom:15px;text-transform:uppercase}.footer-column ul{list-style:none}.footer-column ul li{margin-bottom:8px}.footer-column a,.footer-column p{color:#ccc;font-size:.9rem;text-decoration:none;-webkit-text-decoration-skip:objects;-webkit-transition:color .3s ease;transition:color .3s ease}.footer-column a:hover{color:#fff}.payment-icons{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;gap:8px}.payment-icons img{background-color:#fff;border-radius:3px;height:22px;padding:2px}.social-icons{display:-webkit-box;display:-ms-flexbox;display:flex;gap:15px}.social-icons a{color:#ccc;font-size:1.5rem;-webkit-transition:color .3s ease,-webkit-transform .3s ease;transition:color .3s ease,transform .3s ease}.social-icons a:hover{color:#fff;-webkit-transform:scale(1.1);transform:scale(1.1)}.footer-bottom{border-top:1px solid #444;color:#aaa;font-size:.8rem;padding-top:20px;text-align:center}
+        
+        /* Estilos específicos para a página "Sobre" */
+        .about-section { padding: 50px 20px; }
+        .about-content { max-width: 800px; margin: 0 auto; background-color: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .about-content h1 { font-family: "Roboto Condensed", sans-serif; font-size: 2.5rem; color: var(--verde-principal); margin-bottom: 20px; }
+        .about-content h2 { font-family: "Roboto Condensed", sans-serif; font-size: 1.8rem; color: var(--cor-texto-escuro); margin-top: 30px; margin-bottom: 15px; }
+        .about-content p { font-size: 1rem; line-height: 1.7; margin-bottom: 15px; color: var(--cor-texto-escuro); }
+        .contact-list { list-style: none; padding: 0; }
+        .contact-list li { display: flex; align-items: center; margin-bottom: 12px; font-size: 1rem; }
+        .contact-list i { color: var(--marrom-principal); width: 20px; margin-right: 15px; text-align: center; }
+        .contact-list a { color: var(--verde-principal); text-decoration: none; font-weight: 700; transition: color 0.3s ease; }
+        .contact-list a:hover { color: var(--marrom-principal); }
+        .developer-credit { margin-top: 10px; font-size: 0.75rem; color: #888; }
+        
+        @media (max-width:850px){.header-nav{display:none}.hamburger-menu{display:block}.header-container{position:relative;width:100%}.main-header .logo{-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);left:50%;position:absolute;top:50%}.mobile-nav-menu{-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:var(--cor-fundo-escuro);display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;gap:20px;height:calc(100vh - 84px);left:0;opacity:0;padding:40px 0;position:fixed;top:84px;-webkit-transform:translateY(-20px);transform:translateY(-20px);-webkit-transition:opacity .3s ease,visibility .3s ease,-webkit-transform .3s ease;transition:opacity .3s ease,visibility .3s ease,transform .3s ease;visibility:hidden;width:100%;z-index:1000}.mobile-nav-menu.is-active{opacity:1;-webkit-transform:translateY(0);transform:translateY(0);visibility:visible}.mobile-nav-menu a{color:#fff;font-size:1.2rem;font-weight:700;text-decoration:none;-webkit-text-decoration-skip:objects;text-transform:uppercase}.footer-grid{text-align:center}.social-icons,.payment-icons{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}
+        .about-content { padding: 30px 20px; } .about-content h1 { font-size: 2rem; } .about-content h2 { font-size: 1.5rem; }}
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-container">
+            <nav class="header-nav left-nav">
+                <ul><li><a href="/#">Camisas</a></li><li><a href="/#">Moletons</a></li></ul>
+            </nav>
+            <div class="logo"><a href="/"><img src="/images/dafpo-logo.png" alt="Logo DAFPO"></a></div>
+            <nav class="header-nav right-nav">
+                <ul><li><a href="/#">Acessórios</a></li><li><a href="/sobre.html">Sobre</a></li></ul>
+            </nav>
+            <button class="hamburger-menu" id="hamburger-btn" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+    <nav class="mobile-nav-menu" id="mobile-menu"><a href="/#">Camisas</a><a href="/#">Moletons</a><a href="/#">Acessórios</a><a href="/sobre.html">Sobre</a></nav>
+
+    <main>
+        <section class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <h1>Sobre o DAFPO</h1>
+                    <p>
+                        O <strong>Diretório Acadêmico Francisco de Paula Oliveira (DAFPO)</strong> é a voz e a força representativa dos estudantes do curso de Engenharia Geológica da Universidade Federal de Pelotas (UFPel). Fundado com o compromisso de lutar pelos direitos e interesses do corpo discente, nosso trabalho vai muito além das pautas formais.
+                    </p>
+                    <p>
+                        Nossa principal missão é atuar como uma ponte sólida entre os estudantes e a instituição, promovendo eventos que enriquecem nossa formação, defendendo nossos interesses e, acima de tudo, criando um ambiente acadêmico mais unido, inclusivo e acolhedor. Acreditamos que a jornada universitária é construída tanto dentro quanto fora da sala de aula.
+                    </p>
+                    <p>
+                        Cada projeto, cada evento e cada peça de vestuário da nossa <strong>GeoLoja</strong> é pensada com um propósito: fortalecer a identidade do nosso curso e apoiar a jornada de cada futuro geólogo e geóloga. Pensamos nos alunos porque somos os alunos.
+                    </p>
+
+                    <h2>Nossos Canais</h2>
+                    <ul class="contact-list">
+                        <li><i class="fas fa-globe"></i><a href="https://dafpogeos.netlify.app" target="_blank">Site Oficial do DAFPO</a></li>
+                        <li><i class="fab fa-instagram"></i><a href="https://www.instagram.com/engeo.ufpel" target="_blank">@engeo.ufpel</a></li>
+                        <li><i class="fab fa-whatsapp"></i><a href="https://wa.me/5553999024007" target="_blank">+55 (53) 99902-4007</a></li>
+                        <li><i class="fas fa-envelope"></i><a href="mailto:geologica.dafpo@ufpel.edu.br">geologica.dafpo@ufpel.edu.br</a> (Email Oficial)</li>
+                         <li><i class="fas fa-envelope"></i><a href="mailto:dangeologica@gmail.com">dangeologica@gmail.com</a> (Email Alternativo)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-bottom">
+            <p>&copy; 2025 DAFPO - Loja Geológica. Todos os direitos reservados.</p>
+            <p class="developer-credit">Desenvolvido por Lucas Saulo</p>
+        </div>
+    </footer>
+    
+    <script>
+        // SCRIPT APENAS PARA O MENU MOBILE. A LÓGICA DE PRODUTOS FOI REMOVIDA.
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (hamburgerBtn && mobileMenu) {
+                const icon = hamburgerBtn.querySelector('i');
+                hamburgerBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('is-active');
+                    if (mobileMenu.classList.contains('is-active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
