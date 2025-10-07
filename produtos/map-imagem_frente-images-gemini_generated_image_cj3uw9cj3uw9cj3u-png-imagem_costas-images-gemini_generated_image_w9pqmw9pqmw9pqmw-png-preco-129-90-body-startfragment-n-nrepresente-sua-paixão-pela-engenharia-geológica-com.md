@@ -1,5 +1,5 @@
 ---
-titulo: Moletom Preto
+titulo: Moletom Engenharia Geológica "Geo Dino" Branco
 preco: 129,90
 imagem_frente: /images/gemini_generated_image_cj3uw9cj3uw9cj3u.png
 imagem_costas: /images/gemini_generated_image_w9pqmw9pqmw9pqmw.png
