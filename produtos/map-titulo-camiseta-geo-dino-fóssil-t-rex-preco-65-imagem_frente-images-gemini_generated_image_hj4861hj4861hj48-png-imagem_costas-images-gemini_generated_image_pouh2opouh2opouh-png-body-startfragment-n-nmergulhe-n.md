@@ -7,6 +7,12 @@ tamanhos: P, M, G, GG, XG
 ---
 <!--StartFragment-->
 
+<!--StartFragment-->
+
+**Aviso:** Nossos produtos são confeccionados sob demanda. A produção se inicia ao atingirmos um mínimo de 10 pedidos por lote
+
+<!--EndFragment-->
+
 Mergulhe nas eras e vista sua paixão pela Terra com a nossa exclusiva camiseta de Engenharia Geológica. Criada para os exploradores do presente que são fascinados pelas histórias contadas em rochas e fósseis, esta peça é mais do que uma roupa: é uma declaração de identidade.
 
 <!--StartFragment-->
