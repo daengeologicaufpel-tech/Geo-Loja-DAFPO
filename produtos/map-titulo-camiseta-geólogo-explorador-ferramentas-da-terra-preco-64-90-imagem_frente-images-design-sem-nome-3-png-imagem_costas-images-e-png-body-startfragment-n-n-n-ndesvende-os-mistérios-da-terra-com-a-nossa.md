@@ -3,6 +3,7 @@ titulo: Camiseta Geólogo Explorador - Ferramentas da Terra
 preco: 64,90
 imagem_frente: /images/design-sem-nome-3-.png
 imagem_costas: /images/e.png
+tamanhos: P, M, G, GG, XG
 ---
 <!--StartFragment-->
 
